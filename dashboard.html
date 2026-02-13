@@ -1,4 +1,589 @@
-<!--
-  dashboard.html
-  Main dashboard page displayed after user authentication. Shows user data and information.
--->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitalMind.ai - Dashboard</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Bootstrap Component 16: Navbar with Dropdown -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center" href="dashboard.html">
+                <img src="assets/images/logo-white.png" alt="VitalMind.ai Logo" height="35" class="me-2">
+                <span class="fw-bold">VitalMind.ai</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="dashboard.html">
+                            <i class="fas fa-home me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">
+                            <i class="fas fa-images me-1"></i>Gallery
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-calendar me-1"></i>Appointments
+                        </a>
+                    </li>
+
+                    <!-- Bootstrap Component 17: Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" 
+                           href="#" 
+                           id="userDropdown" 
+                           role="button" 
+                           data-bs-toggle="dropdown">
+                            <img src="assets/images/user-avatar.png" 
+                                 alt="User" 
+                                 class="user-avatar-img me-2" 
+                                 width="32" 
+                                 height="32">
+                            <span id="navUserName">User</span>
+                        </a>
+                        <!-- Bootstrap Component 18: Dropdown Menu -->
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li class="dropdown-header">
+                                <div class="fw-bold" id="dropdownUserName">User Name</div>
+                                <small class="text-muted" id="dropdownUserEmail">user@email.com</small>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user me-2"></i>My Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cog me-2"></i>Settings
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item text-danger" href="#" onclick="handleLogout()">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid px-4 py-4">
+        
+        <!-- Welcome Header with Banner Image -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="welcome-banner">
+                    <img src="assets/images/dashboard-banner.jpg" 
+                         alt="Health Dashboard" 
+                         class="banner-image">
+                    <div class="banner-overlay">
+                        <h2 class="fw-bold mb-1">
+                            Welcome back, <span id="welcomeName">User</span>! 👋
+                        </h2>
+                        <p class="mb-0">Here's your health overview for today</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap Component 19: Cards (Health Stats) -->
+        <div class="row g-4 mb-4">
+            <!-- Appointments Card -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card stat-card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="stat-icon-wrapper mb-3">
+                            <img src="assets/images/stat-appointments.png" 
+                                 alt="Appointments" 
+                                 class="stat-icon-img">
+                        </div>
+                        <h3 class="stat-number mb-2">5</h3>
+                        <p class="stat-label text-muted mb-2">Upcoming Appointments</p>
+                        <small class="stat-change text-success">
+                            <i class="fas fa-arrow-up me-1"></i>12% from last month
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Score Card -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card stat-card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="stat-icon-wrapper mb-3">
+                            <img src="assets/images/stat-health.png" 
+                                 alt="Health Score" 
+                                 class="stat-icon-img">
+                        </div>
+                        <h3 class="stat-number mb-2">98%</h3>
+                        <p class="stat-label text-muted mb-2">Health Score</p>
+                        <small class="stat-change text-success">
+                            <i class="fas fa-arrow-up me-1"></i>5% improvement
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prescriptions Card -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card stat-card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="stat-icon-wrapper mb-3">
+                            <img src="assets/images/stat-prescriptions.png" 
+                                 alt="Prescriptions" 
+                                 class="stat-icon-img">
+                        </div>
+                        <h3 class="stat-number mb-2">3</h3>
+                        <p class="stat-label text-muted mb-2">Active Prescriptions</p>
+                        <small class="stat-change text-warning">
+                            <i class="fas fa-clock me-1"></i>2 expiring soon
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medical Records Card -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card stat-card border-0 shadow-sm h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="stat-icon-wrapper mb-3">
+                            <img src="assets/images/stat-records.png" 
+                                 alt="Medical Records" 
+                                 class="stat-icon-img">
+                        </div>
+                        <h3 class="stat-number mb-2">12</h3>
+                        <p class="stat-label text-muted mb-2">Medical Records</p>
+                        <small class="stat-change text-primary">
+                            <i class="fas fa-eye me-1"></i>View all
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Next Appointment Banner -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card appointment-card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h5 class="mb-3">
+                                    <i class="fas fa-calendar-alt me-2"></i>Next Appointment
+                                </h5>
+                                <h4 class="fw-bold mb-2">Dr. Sarah Johnson - Cardiologist</h4>
+                                <p class="mb-3 text-muted">
+                                    <i class="fas fa-clock me-2"></i>Tomorrow, February 13, 2026 at 10:00 AM
+                                    <span class="mx-2">|</span>
+                                    <i class="fas fa-map-marker-alt me-2"></i>VitalMind Hospital, Room 302
+                                </p>
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-video me-2"></i>Join Virtual Consultation
+                                </button>
+                            </div>
+                            <div class="col-md-4 text-center d-none d-md-block">
+                                <div class="doctor-image-container">
+                                    <img src="assets/images/doctor-sarah.jpg" 
+                                         alt="Dr. Sarah Johnson" 
+                                         class="doctor-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions & Activity -->
+        <div class="row g-4">
+            
+            <!-- Quick Actions Section -->
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="fas fa-bolt text-warning me-2"></i>Quick Actions
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <!-- Bootstrap Component 20: Button Group -->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="quick-action-btn">
+                                    <div class="action-image-wrapper mb-2">
+                                        <img src="assets/images/action-appointment.png" 
+                                             alt="Book Appointment" 
+                                             class="action-image">
+                                    </div>
+                                    <h6 class="mb-1">Book Appointment</h6>
+                                    <small class="text-muted">Schedule a visit with doctor</small>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="quick-action-btn">
+                                    <div class="action-image-wrapper mb-2">
+                                        <img src="assets/images/action-prescription.png" 
+                                             alt="Refill Prescription" 
+                                             class="action-image">
+                                    </div>
+                                    <h6 class="mb-1">Refill Prescription</h6>
+                                    <small class="text-muted">Order your medications</small>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="quick-action-btn">
+                                    <div class="action-image-wrapper mb-2">
+                                        <img src="assets/images/action-lab.png" 
+                                             alt="Lab Results" 
+                                             class="action-image">
+                                    </div>
+                                    <h6 class="mb-1">Lab Results</h6>
+                                    <small class="text-muted">View test results</small>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="quick-action-btn" onclick="window.location.href='gallery.html'">
+                                    <div class="action-image-wrapper mb-2">
+                                        <img src="assets/images/action-gallery.png" 
+                                             alt="Health Gallery" 
+                                             class="action-image">
+                                    </div>
+                                    <h6 class="mb-1">Health Gallery</h6>
+                                    <small class="text-muted">View health images</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                                <!-- Health Metrics Overview -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="fas fa-chart-line text-primary me-2"></i>Health Metrics Overview
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="metric-box">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="text-muted">Blood Pressure</span>
+                                        <img src="assets/images/metric-bp.png" 
+                                             alt="BP" 
+                                             width="24" 
+                                             height="24">
+                                    </div>
+                                    <h4 class="mb-0 fw-bold">120/80</h4>
+                                    <small class="text-success">
+                                        <i class="fas fa-check-circle me-1"></i>Normal
+                                    </small>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="metric-box">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="text-muted">Heart Rate</span>
+                                        <img src="assets/images/metric-heart.png" 
+                                             alt="Heart Rate" 
+                                             width="24" 
+                                             height="24">
+                                    </div>
+                                    <h4 class="mb-0 fw-bold">72 BPM</h4>
+                                    <small class="text-success">
+                                        <i class="fas fa-check-circle me-1"></i>Normal
+                                    </small>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="metric-box">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="text-muted">Temperature</span>
+                                        <img src="assets/images/metric-temp.png" 
+                                             alt="Temperature" 
+                                             width="24" 
+                                             height="24">
+                                    </div>
+                                    <h4 class="mb-0 fw-bold">98.6°F</h4>
+                                    <small class="text-success">
+                                        <i class="fas fa-check-circle me-1"></i>Normal
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- Recent Activity Section -->
+            <div class="col-lg-4">
+                <!-- Bootstrap Component 21: List Group -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="fas fa-history text-primary me-2"></i>Recent Activity
+                        </h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item px-4 py-3">
+                            <div class="d-flex align-items-start">
+                                <div class="activity-icon-wrapper me-3">
+                                    <img src="assets/images/activity-bp.png" 
+                                         alt="Blood Pressure" 
+                                         class="activity-icon">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">Blood Pressure Recorded</h6>
+                                    <p class="mb-1 small text-muted">120/80 mmHg - Normal Range</p>
+                                    <small class="text-muted">
+                                        <i class="fas fa-clock me-1"></i>Today, 9:30 AM
+                                    </small>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="list-group-item px-4 py-3">
+                            <div class="d-flex align-items-start">
+                                <div class="activity-icon-wrapper me-3">
+                                    <img src="assets/images/activity-pills.png" 
+                                         alt="Prescription" 
+                                         class="activity-icon">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">Prescription Filled</h6>
+                                    <p class="mb-1 small text-muted">Lisinopril 10mg - 30 days</p>
+                                    <small class="text-muted">
+                                        <i class="fas fa-clock me-1"></i>Yesterday, 2:15 PM
+                                    </small>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="list-group-item px-4 py-3">
+                            <div class="d-flex align-items-start">
+                                <div class="activity-icon-wrapper me-3">
+                                    <img src="assets/images/activity-lab.png" 
+                                         alt="Lab Results" 
+                                         class="activity-icon">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">Lab Results Available</h6>
+                                    <p class="mb-1 small text-muted">Complete Blood Count</p>
+                                    <small class="text-muted">
+                                        <i class="fas fa-clock me-1"></i>2 days ago
+                                    </small>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="list-group-item px-4 py-3">
+                            <div class="d-flex align-items-start">
+                                <div class="activity-icon-wrapper me-3">
+                                    <img src="assets/images/activity-check.png" 
+                                         alt="Health Check" 
+                                         class="activity-icon">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">Health Check Completed</h6>
+                                    <p class="mb-1 small text-muted">All vitals within normal range</p>
+                                    <small class="text-muted">
+                                        <i class="fas fa-clock me-1"></i>3 days ago
+                                    </small>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <!-- Health Tips Card -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="fas fa-lightbulb text-warning me-2"></i>Today's Health Tips
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <!-- Bootstrap Component 22: Alerts -->
+                        <div class="alert alert-primary border-0 mb-3" role="alert">
+                            <div class="d-flex align-items-center">
+                                <img src="assets/images/tip-water.png" 
+                                     alt="Hydration" 
+                                     width="40" 
+                                     height="40" 
+                                     class="me-3">
+                                <div>
+                                    <h6 class="alert-heading mb-1">Stay Hydrated</h6>
+                                    <p class="mb-0 small">Drink at least 8 glasses of water</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-success border-0 mb-3" role="alert">
+                            <div class="d-flex align-items-center">
+                                <img src="assets/images/tip-exercise.png" 
+                                     alt="Exercise" 
+                                     width="40" 
+                                     height="40" 
+                                     class="me-3">
+                                <div>
+                                    <h6 class="alert-heading mb-1">Daily Exercise</h6>
+                                    <p class="mb-0 small">30 minutes of moderate activity</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info border-0 mb-0" role="alert">
+                            <div class="d-flex align-items-center">
+                                <img src="assets/images/tip-sleep.png" 
+                                     alt="Sleep" 
+                                     width="40" 
+                                     height="40" 
+                                     class="me-3">
+                                <div>
+                                    <h6 class="alert-heading mb-1">Quality Sleep</h6>
+                                    <p class="mb-0 small">Aim for 7-8 hours nightly</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Appointments Table -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0 fw-bold">
+                                <i class="fas fa-calendar-alt text-primary me-2"></i>Upcoming Appointments
+                            </h5>
+                            <!-- Bootstrap Component 23: Badge -->
+                            <span class="badge bg-primary">5 appointments</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-4">
+                        <!-- Bootstrap Component 24: Table -->
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Doctor</th>
+                                        <th>Specialty</th>
+                                        <th>Date & Time</th>
+                                        <th>Location</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="assets/images/doctor1.jpg" 
+                                                     alt="Dr. Sarah Johnson" 
+                                                     class="doctor-thumb me-3">
+                                                <div class="fw-semibold">Dr. Sarah Johnson</div>
+                                            </div>
+                                        </td>
+                                        <td>Cardiology</td>
+                                        <td>Feb 13, 10:00 AM</td>
+                                        <td>Room 302</td>
+                                        <td>
+                                            <span class="badge bg-success">Confirmed</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="assets/images/doctor2.jpg" 
+                                                     alt="Dr. Michael Chen" 
+                                                     class="doctor-thumb me-3">
+                                                <div class="fw-semibold">Dr. Michael Chen</div>
+                                            </div>
+                                        </td>
+                                        <td>General Medicine</td>
+                                        <td>Feb 15, 2:30 PM</td>
+                                        <td>Room 105</td>
+                                        <td>
+                                            <span class="badge bg-warning">Pending</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="assets/images/doctor3.jpg" 
+                                                     alt="Dr. Emily Rodriguez" 
+                                                     class="doctor-thumb me-3">
+                                                <div class="fw-semibold">Dr. Emily Rodriguez</div>
+                                            </div>
+                                        </td>
+                                        <td>Dermatology</td>
+                                        <td>Feb 18, 11:00 AM</td>
+                                        <td>Room 201</td>
+                                        <td>
+                                            <span class="badge bg-success">Confirmed</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container-fluid px-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                    <img src="assets/images/logo-white.png" alt="VitalMind.ai" height="25" class="mb-2">
+                    <p class="mb-0">&copy; 2026 VitalMind.ai - Intelligent Healthcare Assistant</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <small class="text-muted">Developed by Team VitalMind</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
