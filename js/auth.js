@@ -135,3 +135,145 @@ function showSuccess(message) {
     successAlert.classList.remove('d-none');
     successAlert.classList.add('show');
 }
+
+/**
+ * Hide success message
+ */
+function hideSuccess() {
+    const successAlert = document.getElementById('successAlert');
+    successAlert.classList.remove('show');
+    setTimeout(() => {
+        successAlert.classList.add('d-none');
+    }, 300);
+}
+
+/**
+ * Validate login form
+ */
+function validateLoginForm() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    
+    // Reset validation states
+    emailInput.classList.remove('is-invalid');
+    passwordInput.classList.remove('is-invalid');
+    
+    let isValid = true;
+    
+    // Validate email
+    if (!email) {
+        emailError.textContent = 'Email is required';
+        emailInput.classList.add('is-invalid');
+        isValid = false;
+    } else if (!validateEmail(email)) {
+        emailError.textContent = 'Please enter a valid email address';
+        emailInput.classList.add('is-invalid');
+        isValid = false;
+    }
+    
+    // Validate password
+    if (!password) {
+        passwordError.textContent = 'Password is required';
+        passwordInput.classList.add('is-invalid');
+        isValid = false;
+    } else if (!validatePassword(password)) {
+        passwordError.textContent = 'Password must be at least 8 characters';
+        passwordInput.classList.add('is-invalid');
+        isValid = false;
+    }
+    
+    return isValid;
+}
+
+/**
+ * Handle login form submission
+ */
+function handleLogin(event) {
+    event.preventDefault();
+    
+    // Hide any existing alerts
+    hideError();
+    hideSuccess();
+    
+    // Validate form
+    if (!validateLoginForm()) {
+        return;
+    }
+    
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const rememberMe = document.getElementById('rememberMe').checked;
+    const loginBtn = document.getElementById('loginBtn');
+    
+    // Show loading state
+    loginBtn.disabled = true;
+    loginBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Logging in...';
+    
+    // Simulate API call delay
+    setTimeout(() => {
+        // Get users from localStorage
+        const users = JSON.parse(localStorage.getItem('vitalMindUsers') || '[]');
+        
+        // Find matching user
+        const user = users.find(u => u.email === email && u.password === password);
+        
+        if (user) {
+            // Create session
+            const session = {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                loginTime: new Date().toISOString(),
+                rememberMe: rememberMe
+            };
+            
+            // Save session to localStorage
+            localStorage.setItem('currentUser', JSON.stringify(session));
+            
+            // Show success message
+            showSuccess('Login successful! Redirecting to dashboard...');
+            
+            // Redirect to dashboard
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+            
+        } else {
+            // Invalid credentials
+            loginBtn.disabled = false;
+            loginBtn.innerHTML = '<i class="fas fa-sign-in-alt me-2"></i>Login to Dashboard';
+            
+            showError('Invalid email or password. Please try again.');
+        }
+    }, 1000);
+}
+
+/**
+ * Handle Enter key press
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const passwordInput = document.getElementById('password');
+    const emailInput = document.getElementById('email');
+    
+    if (passwordInput) {
+        passwordInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                handleLogin(event);
+            }
+        });
+    }
+    
+    if (emailInput) {
+        emailInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                document.getElementById('password').focus();
+            }
+        });
+    }
+});
