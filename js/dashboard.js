@@ -101,3 +101,39 @@ function handleImageErrors() {
         };
     });
 }
+
+/**
+ * Handle logout
+ */
+function handleLogout() {
+    if (confirm('Are you sure you want to logout?')) {
+        // Clear current user session from localStorage
+        localStorage.removeItem('currentUser');
+        
+        // Redirect to login page
+        window.location.href = 'index.html';
+    }
+}
+
+/**
+ * Check session validity
+ */
+function checkSessionValidity() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+    if (currentUser && currentUser.loginTime) {
+        const loginTime = new Date(currentUser.loginTime);
+        const now = new Date();
+        const hoursDiff = (now - loginTime) / (1000 * 60 * 60);
+        
+        // Session expires after 24 hours if not "remember me"
+        if (hoursDiff > 24 && !currentUser.rememberMe) {
+            alert('Your session has expired. Please login again.');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+    }
+}
+
+// Check session validity every minute
+setInterval(checkSessionValidity, 60000);
