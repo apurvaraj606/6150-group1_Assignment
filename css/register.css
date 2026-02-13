@@ -1,13 +1,4 @@
-/* 
- * register.css
- * Styles for the registration page, including form layout, buttons, and input field styling.
- */
 
- /* 
- * Registration Page Styles
- * Author: Member 2 - Gowri Chandran
- * Description: Professional registration page with form validation and image support
- */
 
 :root {
     --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);

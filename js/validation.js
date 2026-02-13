@@ -1,14 +1,3 @@
-/* 
- * validation.js
- * Provides form validation functions for user input including email, password, and other fields.
- */
-
-/*
- * Form Validation System
- * Author: Member 2 - Gowri Chandran
- * Description: Comprehensive form validation with password strength indicator
- */
-
 // Global validation state
 let validationState = {
     fullName: false,
