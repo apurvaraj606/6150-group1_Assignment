@@ -2,3 +2,319 @@
  * register.css
  * Styles for the registration page, including form layout, buttons, and input field styling.
  */
+
+ /* 
+ * Registration Page Styles
+ * Author: Member 2 - Gowri Chandran
+ * Description: Professional registration page with form validation and image support
+ */
+
+:root {
+    --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--success-gradient);
+    min-height: 100vh;
+}
+
+/* Navbar Styling */
+.navbar {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.navbar-brand img {
+    transition: var(--transition);
+}
+
+.navbar-brand:hover img {
+    transform: rotate(360deg);
+}
+
+.nav-link {
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    border-radius: 5px;
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: rgba(17, 153, 142, 0.1);
+    color: #11998e !important;
+}
+
+/* Register Section */
+.register-section {
+    min-height: 100vh;
+    padding: 80px 0 40px;
+}
+
+/* Register Card */
+.register-card {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.card {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.register-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(17, 153, 142, 0.3);
+    background: var(--success-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Fallback for missing avatar image */
+.register-avatar:empty::before,
+.register-avatar img[src=""]:before {
+    content: '\f234';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 3rem;
+    color: white;
+}
+
+/* Progress Bar */
+.progress {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    background: var(--success-gradient) !important;
+    transition: width 0.5s ease;
+}
+
+/* Form Styling */
+.form-label {
+    color: #495057;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: #11998e;
+    box-shadow: 0 0 0 0.2rem rgba(17, 153, 142, 0.25);
+}
+
+.form-control.is-invalid {
+    border-color: #dc3545;
+    background-image: none;
+}
+
+.form-control.is-valid {
+    border-color: #28a745;
+    background-image: none;
+}
+
+.invalid-feedback {
+    display: none;
+    font-size: 0.875rem;
+    color: #dc3545;
+    margin-top: 0.25rem;
+}
+
+.form-control.is-invalid ~ .invalid-feedback {
+    display: block;
+}
+
+/* Input Groups */
+.input-group .btn {
+    border: 1px solid #ced4da;
+}
+
+.input-group .form-control:focus ~ .btn {
+    border-color: #11998e;
+}
+
+/* Password Strength Indicator */
+.password-strength {
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.password-strength-bar {
+    height: 100%;
+    transition: all 0.4s ease;
+    border-radius: 3px;
+}
+
+.strength-weak {
+    background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+    width: 33%;
+}
+
+.strength-medium {
+    background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+    width: 66%;
+}
+
+.strength-strong {
+    background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+    width: 100%;
+}
+
+/* Form Check */
+.form-check-input:checked {
+    background-color: #11998e;
+    border-color: #11998e;
+}
+
+.form-check-input:focus {
+    border-color: #11998e;
+    box-shadow: 0 0 0 0.2rem rgba(17, 153, 142, 0.25);
+}
+
+.form-check-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Buttons */
+.btn-success {
+    background: var(--success-gradient);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(17, 153, 142, 0.4);
+}
+
+.btn-success:active {
+    transform: translateY(0);
+}
+
+.btn-outline-secondary {
+    border-color: #ced4da;
+    color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #f8f9fa;
+    border-color: #ced4da;
+    color: #495057;
+}
+
+/* Alerts */
+.alert {
+    border-radius: 10px;
+    border: none;
+    animation: slideDown 0.3s ease-out;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Badge */
+.badge {
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer img {
+    filter: brightness(0) invert(1);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 767.98px) {
+    .register-section {
+        padding: 40px 0;
+    }
+
+    .card-body {
+        padding: 2rem 1.5rem !important;
+    }
+
+    .register-avatar {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .card-body {
+        padding: 1.5rem 1rem !important;
+    }
+}
