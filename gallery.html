@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitalMind.ai - Health Gallery</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="container py-5">
+        
+        <!-- Page Header -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold mb-3">
+                    <i class="fas fa-images text-primary me-3"></i>Health & Wellness Gallery
+                </h1>
+                <p class="lead text-muted">
+                    Explore our collection of health resources, medical facilities, and wellness inspiration
+                </p>
+            </div>
+        </div>
+
+        <!-- Bootstrap Component 25: Nav Tabs for Gallery Categories -->
+        <ul class="nav nav-pills nav-fill mb-4" id="galleryTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" 
+                        id="facilities-tab" 
+                        data-bs-toggle="pill" 
+                        data-bs-target="#facilities" 
+                        type="button">
+                    <i class="fas fa-hospital me-2"></i>Facilities
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" 
+                        id="doctors-tab" 
+                        data-bs-toggle="pill" 
+                        data-bs-target="#doctors" 
+                        type="button">
+                    <i class="fas fa-user-md me-2"></i>Our Doctors
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" 
+                        id="wellness-tab" 
+                        data-bs-toggle="pill" 
+                        data-bs-target="#wellness" 
+                        type="button">
+                    <i class="fas fa-spa me-2"></i>Wellness
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" 
+                        id="technology-tab" 
+                        data-bs-toggle="pill" 
+                        data-bs-target="#technology" 
+                        type="button">
+                    <i class="fas fa-robot me-2"></i>Technology
+                </button>
+            </li>
+        </ul>
+
+        <!-- Bootstrap Component 26: Tab Content -->
+        <div class="tab-content" id="galleryTabContent">
+            
+            <!-- Facilities Tab -->
+            <div class="tab-pane fade show active" id="facilities" role="tabpanel">
+                <div class="row g-4">
+                    <!-- Gallery Image 1 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('assets/images/gallery/hospital-exterior.jpg', 'Modern Hospital Exterior')">
+                            <img src="assets/images/gallery/hospital-exterior.jpg" 
+                                 alt="Modern Hospital Exterior" 
+                                 class="gallery-image">
+                            <div class="gallery-overlay">
+                                <h5>Modern Hospital Exterior</h5>
+                                <p class="mb-0">State-of-the-art facility</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Image 2 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('assets/images/gallery/emergency-room.jpg', 'Emergency Room')">
+                            <img src="assets/images/gallery/emergency-room.jpg" 
+                                 alt="Emergency Room" 
+                                 class="gallery-image">
+                            <div class="gallery-overlay">
+                                <h5>Emergency Room</h5>
+                                <p class="mb-0">24/7 emergency care</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Image 3 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('assets/images/gallery/patient-room.jpg', 'Patient Room')">
+                            <img src="assets/images/gallery/patient-room.jpg" 
+                                 alt="Patient Room" 
+                                 class="gallery-image">
+                            <div class="gallery-overlay">
+                                <h5>Patient Room</h5>
+                                <p class="mb-0">Comfortable accommodations</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Image 4 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('assets/images/gallery/operating-room.jpg', 'Operating Room')">
+                            <img src="assets/images/gallery/operating-room.jpg" 
+                                 alt="Operating Room" 
+                                 class="gallery-image">
+                            <div class="gallery-overlay">
+                                <h5>Operating Room</h5>
+                                <p class="mb-0">Advanced surgical suite</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Image 5 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('assets/images/gallery/waiting-area.jpg', 'Waiting Area')">
+                            <img src="assets/images/gallery/waiting-area.jpg" 
+                                 alt="Waiting Area" 
+                                 class="gallery-image">
+                            <div class="gallery-overlay">
+                                <h5>Waiting Area</h5>
+                                <p class="mb-0">Comfortable patient lounge</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Image 6 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('assets/images/gallery/laboratory.jpg', 'Laboratory')">
+                            <img src="assets/images/gallery/laboratory.jpg" 
+                                 alt="Laboratory" 
+                                 class="gallery-image">
+                            <div class="gallery-overlay">
+                                <h5>Laboratory</h5>
+                                <p class="mb-0">Advanced diagnostic lab</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctors Tab -->
+            <div class="tab-pane fade" id="doctors" role="tabpanel">
+                <div class="row g-4">
+                    <!-- Doctor Card 1 -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="doctor-card">
+                            <img src="assets/images/gallery/doctor-sarah.jpg" 
+                                 alt="Dr. Sarah Johnson" 
+                                 class="doctor-photo">
+                            <div class="doctor-info">
+                                <h5 class="fw-bold">Dr. Sarah Johnson</h5>
+                                <p class="text-primary mb-2">Cardiologist</p>
+                                <p class="small text-muted mb-0">15 years experience</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Doctor Card 2 -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="doctor-card">
+                            <img src="assets/images/gallery/doctor-michael.jpg" 
+                                 alt="Dr. Michael Chen" 
+                                 class="doctor-photo">
+                            <div class="doctor-info">
+                                <h5 class="fw-bold">Dr. Michael Chen</h5>
+                                <p class="text-success mb-2">General Medicine</p>
+                                <p class="small text-muted mb-0">12 years experience</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Doctor Card 3 -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="doctor-card">
+                            <img src="assets/images/gallery/doctor-emily.jpg" 
+                                 alt="Dr. Emily Rodriguez" 
+                                 class="doctor-photo">
+                            <div class="doctor-info">
+                                <h5 class="fw-bold">Dr. Emily Rodriguez</h5>
+                                <p class="text-warning mb-2">Dermatologist</p>
+                                <p class="small text-muted mb-0">10 years experience</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Doctor Card 4 -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="doctor-card">
+                            <img src="assets/images/gallery/doctor-james.jpg" 
+                                 alt="Dr. James Wilson" 
+                                 class="doctor-photo">
+                            <div class="doctor-info">
+                                <h5 class="fw-bold">Dr. James Wilson</h5>
+                                <p class="text-info mb-2">Pediatrician</p>
+                                <p class="small text-muted mb-0">18 years experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wellness Tab -->
+            <div class="tab-pane fade" id="wellness" role="tabpanel">
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('assets/images/gallery/yoga-class.jpg', 'Yoga & Meditation')">
+                            <img src="assets/images/gallery/yoga-class.jpg" 
+                                 alt="Yoga & Meditation" 
+                                 class="gallery-image">
+                            <div class="gallery-overlay">
+                                <h5>Yoga & Meditation</h5>
+                                <p class="mb-0">Wellness programs</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('assets/images/gallery/nutrition.jpg', 'Nutrition Center')">
+                            <img src="assets/images/gallery/nutrition.jpg" 
+                                 alt="Nutrition Center" 
+                                 class="gallery-image">
+                            <div class="gallery-overlay">
+                                <h5>Nutrition Center</h5>
+                                <p class="mb-0">Dietary consultation</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('assets/images/gallery/fitness-center.jpg', 'Fitness Center')">
+                            <img src="assets/images/gallery/fitness-center.jpg" 
+                                 alt="Fitness Center" 
+                                 class="gallery-image">
+                            <div class="gallery-overlay">
+                                <h5>Fitness Center</h5>
+                                <p class="mb-0">State-of-the-art gym</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Tab -->
+            <div class="tab-pane fade" id="technology" role="tabpanel">
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('assets/images/gallery/ai-diagnosis.jpg', 'AI Diagnosis System')">
+                            <img src="assets/images/gallery/ai-diagnosis.jpg" 
+                                 alt="AI Diagnosis System" 
+                                 class="gallery-image">
+                            <div class="gallery-overlay">
+                                <h5>AI Diagnosis System</h5>
+                                <p class="mb-0">Advanced AI technology</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('assets/images/gallery/telemedicine.jpg', 'Telemedicine')">
+                            <img src="assets/images/gallery/telemedicine.jpg" 
+                                 alt="Telemedicine" 
+                                 class="gallery-image">
+                            <div class="gallery-overlay">
+                                <h5>Telemedicine</h5>
+                                <p class="mb-0">Virtual consultations</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('assets/images/gallery/medical-equipment.jpg', 'Medical Equipment')">
+                            <img src="assets/images/gallery/medical-equipment.jpg" 
+                                 alt="Medical Equipment" 
+                                 class="gallery-image">
+                            <div class="gallery-overlay">
+                                <h5>Medical Equipment</h5>
+                                <p class="mb-0">Latest technology</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Statistics -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-4 text-center">
+                            <i class="fas fa-chart-bar text-primary me-2"></i>Gallery Statistics
+                        </h5>
+                        <div class="row text-center g-4">
+                            <div class="col-md-3">
+                                <div class="stat-box">
+                                    <i class="fas fa-images fa-3x text-primary mb-3"></i>
+                                    <h3 class="fw-bold" id="totalImages">12</h3>
+                                    <p class="text-muted mb-0">Total Images</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="stat-box">
+                                    <i class="fas fa-hospital fa-3x text-success mb-3"></i>
+                                    <h3 class="fw-bold">6</h3>
+                                    <p class="text-muted mb-0">Facilities</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="stat-box">
+                                    <i class="fas fa-user-md fa-3x text-warning mb-3"></i>
+                                    <h3 class="fw-bold">4</h3>
+                                    <p class="text-muted mb-0">Doctors</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="stat-box">
+                                    <i class="fas fa-spa fa-3x text-info mb-3"></i>
+                                    <h3 class="fw-bold">3</h3>
+                                    <p class="text-muted mb-0">Wellness Programs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Component 27: Modal for Image Lightbox -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="imageModalTitle">Image Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <img src="" alt="Gallery Image" class="img-fluid w-100" id="modalImage">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+</html>
