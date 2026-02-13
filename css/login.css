@@ -61,27 +61,60 @@ body {
 
 /* Hero Section */
 .hero-section {
-    min-height: 100vh;
-    padding: 80px 0 40px;
+    padding: 40px 0;
+    background: var(--primary-gradient);
+    min-height: fit-content;
+}
+
+.hero-section .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section .row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    min-height: auto !important;
+    height: auto;
+    gap: 2rem;
+}
+
+.hero-section .col-lg-6 {
+    display: flex;
+    align-items: center;
+    min-height: auto;
+    flex: 1;
+    max-width: 50%;
+}
+
+.hero-content {
+    width: 100%;
 }
 
 .hero-content h1 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     animation: fadeInUp 0.8s ease-out;
+    font-size: 2.5rem !important;
+    line-height: 1.2;
 }
 
 .hero-content p {
     animation: fadeInUp 1s ease-out;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem !important;
 }
 
 /* Hero Image */
 .hero-image-container {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .hero-image {
     max-width: 100%;
+    max-height: 350px;
     height: auto;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -98,9 +131,7 @@ body {
 }
 
 /* Feature Cards */
-.feature-card {
-    background: white;
-    padding: 1.25rem;
+.feature-card rem;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
@@ -113,11 +144,12 @@ body {
 }
 
 .feature-icon-img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 10px;
     padding: 8px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    flex-shrink: 0;
 }
 
 .feature-icon-img img {
@@ -126,14 +158,42 @@ body {
     object-fit: contain;
 }
 
+.feature-card h6 {
+    font-size: 0.85rem;
+}
+
+.feature-card small {
+    font-size: 0.75rem
+    height: 100%;
+    object-fit: contain;
+}
+
 /* Login Card */
 .login-card {
     animation: fadeInRight 0.8s ease-out;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.hero-section .col-lg-6:last-child {
+    padding-left: 1.5rem;
+    max-width: 50%;
+}
+
+.hero-section .col-lg-6:first-child {
+    padding-right: 1.5rem;
 }
 
 .card {
     border-radius: 20px;
     overflow: hidden;
+}
+
+.card-body {
+    padding: 2.5rem !important;
 }
 
 .login-avatar {
@@ -273,7 +333,7 @@ footer {
 }
 
 footer img {
-    filter: brightness(0) invert(1);
+    max-height: 30px;
 }
 
 /* Animations */
@@ -313,7 +373,12 @@ footer img {
 /* Responsive Design */
 @media (max-width: 991.98px) {
     .hero-section {
-        padding: 40px 0;
+        padding: 30px 0;
+        min-height: auto;
+    }
+    
+    .hero-section .container {
+        display: block;
     }
 
     .hero-content h1 {
@@ -327,6 +392,10 @@ footer img {
     
     .hero-image {
         max-width: 300px;
+    }
+    
+    .hero-section .col-lg-6 {
+        margin-bottom: 2rem;
     }
 }
 
