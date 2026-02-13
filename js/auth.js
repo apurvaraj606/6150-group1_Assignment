@@ -50,3 +50,88 @@ function initializeDemoUser() {
         console.log('Demo user initialized successfully');
     }
 }
+
+/**
+ * Check if user is already logged in
+ */
+function checkExistingSession() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+    if (currentUser) {
+        // User already logged in, redirect to dashboard
+        window.location.href = 'dashboard.html';
+    }
+}
+
+/**
+ * Toggle password visibility
+ */
+function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const toggleIcon = document.getElementById('toggleIcon');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash');
+    } else {
+        passwordInput.type = 'password';
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+    }
+}
+
+/**
+ * Validate email format
+ */
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+/**
+ * Validate password length
+ */
+function validatePassword(password) {
+    return password.length >= 8;
+}
+
+/**
+ * Show error message
+ */
+function showError(message) {
+    const errorAlert = document.getElementById('errorAlert');
+    const errorMessage = document.getElementById('errorMessage');
+    
+    errorMessage.textContent = message;
+    errorAlert.classList.remove('d-none');
+    errorAlert.classList.add('show');
+    
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+        hideError();
+    }, 5000);
+}
+
+/**
+ * Hide error message
+ */
+function hideError() {
+    const errorAlert = document.getElementById('errorAlert');
+    errorAlert.classList.remove('show');
+    setTimeout(() => {
+        errorAlert.classList.add('d-none');
+    }, 300);
+}
+
+/**
+ * Show success message
+ */
+function showSuccess(message) {
+    const successAlert = document.getElementById('successAlert');
+    const successMessage = document.getElementById('successMessage');
+    
+    successMessage.textContent = message;
+    successAlert.classList.remove('d-none');
+    successAlert.classList.add('show');
+}
